@@ -1,4 +1,4 @@
-package lxf.widget.adapter;
+package lxf.widget.recyclerview.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

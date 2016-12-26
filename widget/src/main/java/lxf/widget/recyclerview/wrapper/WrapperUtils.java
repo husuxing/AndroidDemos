@@ -1,4 +1,4 @@
-package lxf.widget.util;
+package lxf.widget.recyclerview.wrapper;
 
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;

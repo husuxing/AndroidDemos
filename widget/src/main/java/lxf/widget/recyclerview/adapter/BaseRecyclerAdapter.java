@@ -1,4 +1,4 @@
-package lxf.widget.adapter;
+package lxf.widget.recyclerview.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -6,9 +6,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerViewHolder> {
+import lxf.widget.recyclerview.itemtouchhelper.ChangeDataLinstener;
+
+public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerViewHolder> implements ChangeDataLinstener{
     protected final List<T> mData;
     private OnItemClickListener mClickListener;
     private OnItemLongClickListener mLongClickListener;
@@ -72,6 +75,19 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<Recycl
     abstract public int getItemLayoutId(int viewType);
 
     abstract public void bindData(RecyclerViewHolder holder, int position, T item);
+
+    @Override
+    public void swap(int from, int to) {
+        //交换list中两个对象的位置
+        Collections.swap(mData, from, to);
+        notifyItemMoved(from, to);
+    }
+
+    @Override
+    public void del(int position) {
+        mData.remove(position);
+        notifyItemRemoved(position);
+    }
 
     public interface OnItemClickListener {
         public void onItemClick(View itemView, int pos);

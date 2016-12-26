@@ -1,4 +1,4 @@
-package lxf.widget;
+package lxf.widget.recyclerview;
 
 import android.content.Context;
 import android.support.annotation.Nullable;

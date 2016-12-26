@@ -2,6 +2,7 @@ package lxf.androiddemos.ui;
 
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.Menu;
 import android.view.View;
 
@@ -10,9 +11,10 @@ import java.util.List;
 
 import lxf.androiddemos.R;
 import lxf.androiddemos.base.BaseActivity;
-import lxf.widget.LoadMoreRecyclerView;
-import lxf.widget.adapter.BaseRecyclerAdapter;
-import lxf.widget.adapter.RecyclerViewHolder;
+import lxf.widget.recyclerview.LoadMoreRecyclerView;
+import lxf.widget.recyclerview.adapter.BaseRecyclerAdapter;
+import lxf.widget.recyclerview.adapter.RecyclerViewHolder;
+import lxf.widget.recyclerview.itemtouchhelper.MyItemTouchHelperCallback;
 
 public class MainActivity extends BaseActivity{
 
@@ -29,7 +31,6 @@ public class MainActivity extends BaseActivity{
         datas.add("ViewDragHelper");
         datas.add("自定义Behavior");
     }
-
 
     @Override
     protected void initViews() {
@@ -61,6 +62,10 @@ public class MainActivity extends BaseActivity{
                 }
             });
             recyclerView.setAdapter(adapter);
+
+            ItemTouchHelper.Callback callBack = new MyItemTouchHelperCallback(adapter);
+            ItemTouchHelper itemTouchHelper = new ItemTouchHelper(callBack);
+            itemTouchHelper.attachToRecyclerView(recyclerView);
         }
     }
 

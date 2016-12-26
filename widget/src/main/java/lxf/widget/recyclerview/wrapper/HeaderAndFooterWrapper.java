@@ -1,12 +1,12 @@
-package lxf.widget.wrapper;
+package lxf.widget.recyclerview.wrapper;
 
 import android.support.v4.util.SparseArrayCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
-import lxf.widget.adapter.RecyclerViewHolder;
-import lxf.widget.util.WrapperUtils;
+
+import lxf.widget.recyclerview.adapter.RecyclerViewHolder;
 
 
 /**

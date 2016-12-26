@@ -1,4 +1,4 @@
-package lxf.widget.divider;
+package lxf.widget.recyclerview.divider;
 
 import android.content.Context;
 import android.content.res.TypedArray;
