@@ -16,7 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.ViewDragHelperActivity"/>
+        <activity android:name=".ui.ViewDragHelperActivity" />
+        <activity android:name=".ui.BehaviorActivity"></activity>
     </application>
 
 </manifest>

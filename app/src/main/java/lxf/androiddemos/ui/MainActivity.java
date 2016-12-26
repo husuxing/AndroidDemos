@@ -27,6 +27,7 @@ public class MainActivity extends BaseActivity{
     protected void initVariables(Bundle savedInstanceState) {
         datas = new ArrayList<>();
         datas.add("ViewDragHelper");
+        datas.add("自定义Behavior");
     }
 
 
@@ -52,6 +53,9 @@ public class MainActivity extends BaseActivity{
                     switch (pos){
                         case 0:
                             startToActivity(ViewDragHelperActivity.class);
+                            break;
+                        case 1:
+                            startToActivity(BehaviorActivity.class);
                             break;
                     }
                 }
