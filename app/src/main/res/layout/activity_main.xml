@@ -9,7 +9,7 @@
 
     <include layout="@layout/view_toolbar"/>
 
-    <com.lxf.recyclerview.LoadMoreRecyclerView
+    <lxf.widget.LoadMoreRecyclerView
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
