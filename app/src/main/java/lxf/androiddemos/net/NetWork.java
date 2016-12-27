@@ -1,0 +1,179 @@
+package lxf.androiddemos.net;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.ObservableSource;
+import io.reactivex.ObservableTransformer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Function;
+import io.reactivex.schedulers.Schedulers;
+import lxf.androiddemos.model.RequestModel;
+import lxf.androiddemos.model.ResponseModel;
+import okhttp3.OkHttpClient;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+/**
+ * 网络请求工具类
+ * Created by lxf on 2016/10/19.
+ */
+public class NetWork {
+    private Api api;
+    private volatile static NetWork INSTANCE;
+
+    private NetWork() {
+        if (api == null) {
+
+            OkHttpClient client = new OkHttpClient.Builder()
+                    .connectTimeout(NetConfig.CONNECT_TIME_OUT, TimeUnit.MILLISECONDS)
+                    .build();
+
+            Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
+
+            Retrofit retrofit = new Retrofit.Builder()
+                    .client(client)
+                    .baseUrl(NetConfig.BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+//                    .addCallAdapterFactory(RxJavaCallAdapterFactory.create()) //squareup公司的retrofit2暂不支持rxjava2
+                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                    .build();
+            api = retrofit.create(Api.class);
+        }
+    }
+
+    /**
+     * 获取单例
+     */
+    public static NetWork getInstance() {
+        if (INSTANCE == null) {
+            synchronized (NetWork.class) {
+                if (INSTANCE == null) {
+                    INSTANCE = new NetWork();
+                }
+            }
+        }
+        return INSTANCE;
+    }
+
+    /**
+     * 对结果进行预处理
+     */
+    private static <T> ObservableTransformer<ResponseModel, T> handleObject(final Class<T> cls) {
+        return new ObservableTransformer<ResponseModel, T>() {
+            @Override
+            public ObservableSource<T> apply(Observable<ResponseModel> upstream) {
+                return upstream
+                        .flatMap(new Function<ResponseModel, ObservableSource<T>>() {
+                            @Override
+                            public ObservableSource<T> apply(ResponseModel responseModel) throws Exception {
+                                if (responseModel.getError() == 0) {
+                                    return createObject(responseModel.getData(), cls);
+                                } else {
+                                    return Observable.error(new ServerException(responseModel.getMsg()));
+                                }
+                            }
+                        })
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread());
+            }
+        };
+    }
+
+    /**
+     * 对结果进行预处理
+     */
+    private static <T> ObservableTransformer<ResponseModel, List<T>> handleList(final Class<T> cls) {
+        return new ObservableTransformer<ResponseModel, List<T>>() {
+            @Override
+            public ObservableSource<List<T>> apply(Observable<ResponseModel> upstream) {
+                return upstream
+                        .flatMap(new Function<ResponseModel, ObservableSource<List<T>>>() {
+                            @Override
+                            public ObservableSource<List<T>> apply(ResponseModel responseModel) throws Exception {
+                                if (responseModel.getError() == 0) {
+                                    return createList(responseModel.getData(), cls);
+                                } else {
+                                    return Observable.error(new ServerException(responseModel.getMsg()));
+                                }
+                            }
+                        })
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread());
+            }
+        };
+    }
+
+    /**
+     * 创建成功的数据
+     */
+    private static <T> Observable<T> createObject(final String data, final Class<T> cls) {
+        return Observable.create(new ObservableOnSubscribe<T>() {
+            @Override
+            public void subscribe(ObservableEmitter<T> emitter) throws Exception {
+                try {
+                    emitter.onNext(GsonUtil.GsonToBean(data, cls));
+                    emitter.onComplete();
+                } catch (Exception e) {
+                    emitter.onError(e);
+                }
+            }
+        });
+    }
+
+    /**
+     * 创建成功的数据
+     */
+    private static <T> Observable<List<T>> createList(final String data, final Class<T> cls) {
+        return Observable.create(new ObservableOnSubscribe<List<T>>() {
+            @Override
+            public void subscribe(ObservableEmitter<List<T>> emitter) throws Exception {
+                try {
+                    emitter.onNext(GsonUtil.GsonToList(data, cls));
+                    emitter.onComplete();
+                } catch (Exception e) {
+                    emitter.onError(e);
+                }
+            }
+        });
+    }
+
+    public <T> Observable<T> getObject(String code, String info, int userid, final Class<T> cls) {
+
+        Observable<ResponseModel> observable = api.get(new RequestModel(code, info, "xxxx", userid));
+
+        return observable
+                .compose(handleObject(cls));
+    }
+
+    public <T> Observable<List<T>> getList(String code, String info, int userid, final Class<T> cls) {
+
+        Observable<ResponseModel> observable = api.get(new RequestModel(code, info, "xxxx", userid));
+
+        return observable
+                .compose(handleList(cls));
+    }
+
+    public <T> Observable<T> postObject(String code, String info, int userid, final Class<T> cls) {
+
+        Observable<ResponseModel> observable = api.post(new RequestModel(code, info, "xxxx", userid));
+
+        return observable
+                .compose(handleObject(cls));
+    }
+
+    public <T> Observable<List<T>> postList(String code, String info, int userid, final Class<T> cls) {
+
+        Observable<ResponseModel> observable = api.post(new RequestModel(code, info, "xxxx", userid));
+
+        return observable
+                .compose(handleList(cls));
+    }
+}

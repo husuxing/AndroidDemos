@@ -5,12 +5,11 @@ import android.os.Bundle;
 import lxf.androiddemos.R;
 import lxf.androiddemos.base.BaseActivity;
 
-public class ViewDragHelperActivity extends BaseActivity {
-
+public class ZxingActivity extends BaseActivity {
 
     @Override
     protected void setView() {
-        setContentView(R.layout.activity_view_drag_helper);
+        setContentView(R.layout.activity_zxing);
     }
 
     @Override

@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -25,8 +26,14 @@ public class BehaviorActivity extends BaseActivity {
     private NestedScrollView scrollView;
 
     @Override
-    protected int setLayoutId() {
-        return R.layout.activity_behavior;
+    protected void setView() {
+        setContentView(R.layout.activity_behavior);
+    }
+
+    @Override
+    protected void setWindowFlags() {
+        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
     }
 
     @Override
@@ -35,10 +42,8 @@ public class BehaviorActivity extends BaseActivity {
         for (int i = 0; i < 100; i++) {
             datas.add(i + 1);
         }
-    }
 
-    @Override
-    protected void initViews() {
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -57,6 +62,11 @@ public class BehaviorActivity extends BaseActivity {
         }
 
         initRecyclerView();
+    }
+
+    @Override
+    protected void onActivityCreate() {
+
     }
 
     private void initRecyclerView() {

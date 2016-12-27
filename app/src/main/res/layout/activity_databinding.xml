@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--如果本页不需要绑定数据，data标签可以省略-->
+    <data class="DataBingMain">
+        <import type="lxf.widget.util.AppUtils"/>
+        <variable
+            name="user"
+            type="lxf.androiddemos.model.UserEntity"/>
+    </data>
+
+    <LinearLayout
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:context="lxf.androiddemos.ui.DatabindingActivity"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:orientation="vertical"
+        >
+        <TextView
+            style="@style/text_base"
+            android:text="@{`name:`+user.name}"/>
+
+        <TextView
+            style="@style/text_base"
+            android:text="@{user.sex}"/>
+        <TextView
+            style="@style/text_base"
+            android:text="@{String.valueOf(user.age)}"/>
+        <TextView
+            style="@style/text_base"
+            android:text="@{user.initType(user.type)}"/>
+    </LinearLayout>
+</layout>

@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Window;
 
 import lxf.widget.util.SharedPrefsUtil;
 import lxf.widget.util.ToastUtils;
@@ -20,25 +19,24 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setWindowFlags();
-        setContentView(setLayoutId());
+        setView();
         initVariables(savedInstanceState);
-        initViews();
+        onActivityCreate();
     }
 
     /**
      * 设置窗体属性
      */
     protected void setWindowFlags() {
-        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
+//        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
+//        requestWindowFeature(Window.FEATURE_NO_TITLE);
     }
 
     /**
-     * 设置布局id
+     * 设置布局
      *
-     * @return R.layout.xxx
      */
-    protected abstract int setLayoutId();
+    protected abstract void setView();
 
     /**
      * 初始化成员变量
@@ -47,12 +45,7 @@ public abstract class BaseActivity extends AppCompatActivity {
      */
     protected abstract void initVariables(Bundle savedInstanceState);
 
-    /**
-     * 初始化控件
-     */
-    protected abstract void initViews();
-
-
+    protected abstract void onActivityCreate();
 
     /**
      * 显示Toast

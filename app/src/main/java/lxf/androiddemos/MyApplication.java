@@ -3,6 +3,8 @@ package lxf.androiddemos;
 import android.app.Application;
 import android.content.Context;
 
+import cn.izis.zxing.util.Zxing;
+
 /**
  * 自定义Application
  * Created by lxf2016 on 2016/8/3.
@@ -15,6 +17,8 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         instance = this;
+
+        Zxing.init(this);
     }
 
     public static MyApplication getInstance() {

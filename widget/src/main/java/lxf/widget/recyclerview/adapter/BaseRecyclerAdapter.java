@@ -28,7 +28,7 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<Recycl
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mClickListener.onItemClick(holder.itemView, holder.getLayoutPosition());
+                    mClickListener.onItemClick(holder.itemView, holder.getAdapterPosition());
                 }
             });
         }
@@ -36,7 +36,7 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<Recycl
             holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
-                    mLongClickListener.onItemLongClick(holder.itemView, holder.getLayoutPosition());
+                    mLongClickListener.onItemLongClick(holder.itemView, holder.getAdapterPosition());
                     return true;
                 }
             });

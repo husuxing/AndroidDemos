@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#1fcc7b</color>
+    <color name="colorPrimaryDark">#1fcc7b</color>
+    <color name="colorAccent">#ff4081</color>
+
+    <color name="yellow">#ffbc00</color>
+    <color name="greenLow">#1fcc7b</color>
+    <color name="bg_orange">#fab235</color>
+    <color name="bg_pink">#FAE3AD</color>
+    <color name="bg_pvpLevel">#EEA323</color>
+    <color name="bg_pvpSchool">#F3C24C</color>
+    <color name="greenHigh">#096037</color>
+    <color name="textHint">#99bea0</color>
+    <color name="text_yellow_bg">#862600</color>
+    <color name="text_green_bg">#096037</color>
+    <color name="text_orange">#ffbc00</color>
+    <color name="text_orange_bg">#FF8E09</color>
+    <color name="text_green">#1fcc7b</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="red">#ff0000</color>
+
+    <drawable name="text_enablepress">#8DC084</drawable>
+
+    <color name="top_bg_color">#2f2f2f</color>
+    <color name="colorBackground">#e6dada</color>
+
+    <color name="text_color">#FF8A00</color>
+
 </resources>
