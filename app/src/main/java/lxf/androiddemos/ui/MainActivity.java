@@ -3,22 +3,23 @@ package lxf.androiddemos.ui;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.widget.helper.ItemTouchHelper;
-import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import lxf.androiddemos.BR;
 import lxf.androiddemos.R;
 import lxf.androiddemos.base.BaseActivity;
+import lxf.androiddemos.base.BaseRecyclerBindingAdapter;
 import lxf.androiddemos.databinding.ActivityMainBinding;
-import lxf.widget.recyclerview.adapter.BaseRecyclerAdapter;
-import lxf.widget.recyclerview.adapter.RecyclerViewHolder;
+import lxf.androiddemos.model.MainRecyclerHeader;
+import lxf.androiddemos.model.MainRecyclerItem;
 import lxf.widget.recyclerview.itemtouchhelper.MyItemTouchHelperCallback;
 import lxf.widget.util.RecyclerViewUtils;
 
 public class MainActivity extends BaseActivity {
 
-    private List<String> datas;
+    private List<Object> datas;
     private ActivityMainBinding binding;
 
     @Override
@@ -29,48 +30,41 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void initVariables(Bundle savedInstanceState) {
         datas = new ArrayList<>();
-        datas.add("ViewDragHelper");
-        datas.add("自定义Behavior");
-        datas.add("二维码");
-        datas.add("DataBinding");
+        MainRecyclerHeader header = new MainRecyclerHeader();
+        header.setHeader("我是头部文件");
+        datas.add(header);
+        for (int i = 0; i < MainRecyclerItem.items.length; i++) {
+            MainRecyclerItem item = new MainRecyclerItem();
+            item.setContent(MainRecyclerItem.items[i]);
+            datas.add(item);
+        }
     }
 
     @Override
     protected void onActivityCreate() {
-        BaseRecyclerAdapter<String> adapter = new BaseRecyclerAdapter<String>(datas) {
+        BaseRecyclerBindingAdapter bindingAdapter = new BaseRecyclerBindingAdapter(datas) {
             @Override
             public int getItemLayoutId(int viewType) {
-                return R.layout.item_recycler_main;
+                return viewType;
             }
 
             @Override
-            public void bindData(RecyclerViewHolder holder, int position, String item) {
-                holder.setText(R.id.tv_content, item);
+            public int getItemVariableId() {
+                return BR.item;//对应item布局里面data标签中的name
+            }
+
+            @Override
+            public int getItemViewType(int position) {
+                if (position == 0)
+                    return R.layout.header_recycler_main;
+                else
+                    return R.layout.item_recycler_main;
             }
         };
-        adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(View itemView, int pos) {
-                switch (pos) {
-                    case 0:
-                        startToActivity(ViewDragHelperActivity.class);
-                        break;
-                    case 1:
-                        startToActivity(BehaviorActivity.class);
-                        break;
-                    case 2:
-                        startToActivity(ZxingActivity.class);
-                        break;
-                    case 3:
-                        startToActivity(DatabindingActivity.class);
-                        break;
-                }
-            }
-        });
-        RecyclerViewUtils.setLinearManagerAndAdapter(binding.recyclerview,adapter);
+        RecyclerViewUtils.setLinearManagerAndAdapter(binding.recyclerview, bindingAdapter);
 
-
-        ItemTouchHelper.Callback callBack = new MyItemTouchHelperCallback(adapter);
+        //item可以长按拖动进行位置交换
+        ItemTouchHelper.Callback callBack = new MyItemTouchHelperCallback(bindingAdapter);
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(callBack);
         itemTouchHelper.attachToRecyclerView(binding.recyclerview);
     }

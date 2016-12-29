@@ -1,56 +1,88 @@
 package lxf.androiddemos.model;
 
-public class UserEntity {
-	private String name;
-	private String sex;
-	private int age;
-	private int type;
+import android.databinding.BaseObservable;
+import android.databinding.Bindable;
+import android.databinding.ObservableField;
+import android.view.View;
 
-	public String initType(int type){
-		String result;
-		switch (type){
-			case 1:
-				result = "程序猿";
-				break;
-			case 2:
-				result = "程序猿的天敌";
-				break;
-			default:
-				result = "无业游民";
-				break;
-		}
-		return result;
-	}
+import com.android.databinding.library.baseAdapters.BR;
 
-	public String getName() {
-		return name;
-	}
+public class UserEntity extends BaseObservable{
+    private String name;
+    private String sex;
+    private int age;
+    private int type;
+    public ObservableField<String> address = new ObservableField<>();
+    private String img;
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public ObservableField<Boolean> checked = new ObservableField<>();
+    public ObservableField<String> color = new ObservableField<>();
 
-	public String getSex() {
-		return sex;
-	}
+    public String initType(int type) {
+        String result;
+        switch (type) {
+            case 1:
+                result = "程序猿";
+                break;
+            case 2:
+                result = "程序猿的天敌";
+                break;
+            default:
+                result = "无业游民";
+                break;
+        }
+        return result;
+    }
 
-	public void setSex(String sex) {
-		this.sex = sex;
-	}
+    public void changeAddress(View view){
+        address.set("change:" + address.get());
+    }
 
-	public int getAge() {
-		return age;
-	}
+    public void addAge(View view) {
+        setAge(getAge() + 1);
+    }
 
-	public void setAge(int age) {
-		this.age = age;
-	}
 
-	public int getType() {
-		return type;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setType(int type) {
-		this.type = type;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    @Bindable
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+//        notifyChange();//刷新所有可刷新数据
+        notifyPropertyChanged(BR.age);
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
 }

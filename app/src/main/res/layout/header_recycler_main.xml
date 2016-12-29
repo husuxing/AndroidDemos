@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="item"
+            type="lxf.androiddemos.model.MainRecyclerHeader"/>
+    </data>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:gravity="center"
+        android:text="@{item.header}"
+        android:background="@color/text_orange_bg">
+
+    </TextView>
+</layout>

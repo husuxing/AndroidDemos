@@ -1,34 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <!--如果本页不需要绑定数据，data标签可以省略-->
     <data class="DataBingMain">
-        <import type="lxf.widget.util.AppUtils"/>
+
+        <import type="lxf.androiddemos.R" />
+
+        <import type="android.view.View" />
+
         <variable
             name="user"
-            type="lxf.androiddemos.model.UserEntity"/>
+            type="lxf.androiddemos.model.UserEntity" />
+
+        <variable
+            name="util"
+            type="lxf.androiddemos.test.TestUtil" />
     </data>
 
-    <LinearLayout
-        xmlns:tools="http://schemas.android.com/tools"
-        tools:context="lxf.androiddemos.ui.DatabindingActivity"
+    <ScrollView xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="16dp"
-        android:orientation="vertical"
-        >
-        <TextView
-            style="@style/text_base"
-            android:text="@{`name:`+user.name}"/>
+        tools:context="lxf.androiddemos.ui.DatabindingActivity">
 
-        <TextView
-            style="@style/text_base"
-            android:text="@{user.sex}"/>
-        <TextView
-            style="@style/text_base"
-            android:text="@{String.valueOf(user.age)}"/>
-        <TextView
-            style="@style/text_base"
-            android:text="@{user.initType(user.type)}"/>
-    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                style="@style/text_base"
+                android:text="@{`name:`+user.name}" />
+
+            <TextView
+                style="@style/text_base"
+                android:text="@{user.sex}" />
+
+            <TextView
+                style="@style/text_base"
+                android:text="@{String.valueOf(user.age)}" />
+
+            <TextView
+                style="@style/text_base"
+                android:text="@{user.initType(user.type)}" />
+
+            <TextView
+                style="@style/text_base"
+                android:text="@{user.address}" />
+
+            <TextView
+                style="@style/text_base"
+                android:text="@{String.valueOf(user.checked)}" />
+
+            <TextView
+                style="@style/text_base"
+                android:text="@{user.color}" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{user.addAge}"
+                android:text="改变年龄" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{user.changeAddress}"
+                android:text="改变地址" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@{`#de325e`}"
+                android:onClick="@{util.onBtnClick}"
+                android:text="事件绑定" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onTextChanged="@{util.onTextChanged}"
+                android:text="@={user.address}" />
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:imageResource="@{R.mipmap.ic_launcher}" />
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+
+                app:placeHolder="@{R.mipmap.ic_launcher}"
+                app:url="@{user.img}" />
+
+            <CheckBox
+                android:id="@+id/checkbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="@={user.checked}" />
+
+            <lxf.androiddemos.test.ColorPicker
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                app:color="@={user.color}" />
+        </LinearLayout>
+    </ScrollView>
+
 </layout>
