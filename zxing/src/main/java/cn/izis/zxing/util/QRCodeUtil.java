@@ -72,7 +72,7 @@ public class QRCodeUtil {
 	 * @return Bitmap 位图
 	 * @throws WriterException
 	 */
-	public Bitmap createCode(String string, Bitmap mBitmap, BarcodeFormat format)
+	public static Bitmap createCode(String string, Bitmap mBitmap, BarcodeFormat format)
 			throws WriterException {
 		int IMAGE_HALFWIDTH = 40;//中间的logo图片大小
 		Matrix m = new Matrix();
