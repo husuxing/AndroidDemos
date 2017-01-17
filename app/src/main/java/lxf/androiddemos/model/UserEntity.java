@@ -4,11 +4,11 @@ import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 import android.databinding.ObservableField;
 import android.view.View;
+import lxf.androiddemos.BR;
 
-import com.android.databinding.library.baseAdapters.BR;
 
 public class UserEntity extends BaseObservable{
-    private String name;
+    public String name;
     private String sex;
     private int age;
     private int type;
@@ -43,13 +43,13 @@ public class UserEntity extends BaseObservable{
     }
 
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
+//    public String getName() {
+//        return name;
+//    }
+//
+//    public void setName(String name) {
+//        this.name = name;
+//    }
 
     public String getSex() {
         return sex;

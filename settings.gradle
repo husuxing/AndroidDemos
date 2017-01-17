@@ -1,1 +1,1 @@
-include ':app', ':widget', ':zxing'
+include ':app', ':widget', ':zxing', ':ioc'
