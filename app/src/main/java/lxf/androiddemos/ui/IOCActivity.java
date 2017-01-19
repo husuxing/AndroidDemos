@@ -101,6 +101,7 @@ public class IOCActivity extends AppCompatActivity {
                     sgf.append(")");
                     System.out.println("sgf：" + sgf.toString());
                     answerList.clear();
+                    answer = "";
 
                 } catch (IOException e) {
                     e.printStackTrace();
