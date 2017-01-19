@@ -7,9 +7,10 @@ import lxf.androiddemos.ui.BehaviorActivity;
 import lxf.androiddemos.ui.DatabindingActivity;
 import lxf.androiddemos.ui.ViewDragHelperActivity;
 import lxf.androiddemos.ui.ZxingActivity;
+import lxf.androiddemos.ui.IOCActivity;
 
 public class MainRecyclerItem {
-    public static final String[] items = new String[]{"ViewDragHelper", "自定义Behavior", "二维码", "DataBinding"};
+    public static final String[] items = new String[]{"ViewDragHelper", "自定义Behavior", "二维码", "DataBinding","IOC"};
 
     private String content;
 
@@ -27,6 +28,9 @@ public class MainRecyclerItem {
                 break;
             case "DataBinding":
                 intent = new Intent(view.getContext(), DatabindingActivity.class);
+                break;
+            case "IOC":
+                intent = new Intent(view.getContext(), IOCActivity.class);
                 break;
         }
         if (intent != null)

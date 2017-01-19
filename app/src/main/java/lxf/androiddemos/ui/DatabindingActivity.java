@@ -6,13 +6,13 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
-import com.android.databinding.library.baseAdapters.BR;
-
 import lxf.androiddemos.R;
+import lxf.androiddemos.BR;
 import lxf.androiddemos.databinding.DataBingMain;
 import lxf.androiddemos.model.UserEntity;
 import lxf.androiddemos.test.TestUtil;
 import lxf.androiddemos.model.databinding.MyComponent;
+
 
 
 public class DatabindingActivity extends AppCompatActivity {
@@ -27,7 +27,8 @@ public class DatabindingActivity extends AppCompatActivity {
 
         //2.获取数据
         UserEntity user = new UserEntity();
-        user.setName("lxf");
+//        user.setName("lxf");
+        user.name="lxf";
         user.setSex("man");
         user.setAge(25);
         user.setType(1);
