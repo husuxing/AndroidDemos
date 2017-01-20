@@ -57,7 +57,7 @@ public class Go {
      */
 
     public boolean blackfirst;
-    public int ans_count;
+    public int lu;
     public List<AndataBean> andata;
     public List<List<String>> prepos;
 
