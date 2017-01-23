@@ -25,7 +25,7 @@
         <activity android:name=".ui.ZxingActivity" />
         <activity android:name=".ui.DatabindingActivity" />
         <activity android:name=".ui.NetActivity" />
-        <activity android:name=".ui.IOCActivity"></activity>
+        <activity android:name=".ui.IOCActivity"/>
     </application>
 
 </manifest>
