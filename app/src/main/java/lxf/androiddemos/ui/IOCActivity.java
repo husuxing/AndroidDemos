@@ -75,7 +75,7 @@ public class IOCActivity extends AppCompatActivity {
 //                            System.out.println(resultData);
 
                         start = resultData.indexOf("andata");
-                        end = resultData.indexOf("edit_count");
+                        end = resultData.indexOf("\"sy\"");
                         String s1 = resultData.substring(0, start);
                         String s2 = resultData.substring(start, end);
                         String s3 = resultData.substring(end, resultData.length());
