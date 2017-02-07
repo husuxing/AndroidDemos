@@ -45,7 +45,9 @@ SCROLL_FLAG_SNAP：对应xml布局中的snap，设置该flag的view在滚动停�
         android:layout_height="350dp"
         android:background="@drawable/mv"
         android:elevation="8dp"
-        app:layout_behavior="@string/bottom_sheet_behavior">
+        app:layout_behavior="@string/bottom_sheet_behavior"
+        app:behavior_peekHeight="0dp"
+        app:behavior_hideable="true"><!--behavior_peekHeight必须设置，表示Collapse状态的高度-->
         <!--中间可以随意写自己的布局-->
     </android.support.v4.widget.NestedScrollView>
 

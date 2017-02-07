@@ -55,6 +55,13 @@ public class BehaviorActivity extends BaseActivity {
                 public void onClick(View view) {
                     //                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     //                        .setAction("Action", null).show();
+                    /*
+                     * STATE_COLLAPSED： 默认的折叠状态， bottom sheets只在底部显示一部分布局。显示高度可以通过 app:behavior_peekHeight 设置（默认是0，但必须设置）
+                     * STATE_DRAGGING ： 过渡状态，此时用户正在向上或者向下拖动bottom sheet
+                     * STATE_SETTLING: 视图从脱离手指自由滑动到最终停下的这一小段时间
+                     * STATE_EXPANDED： bottom sheet 处于完全展开的状态：当bottom sheet的高度低于CoordinatorLayout容器时，整个bottom sheet都可见；或者CoordinatorLayout容器已经被bottom sheet填满。
+                     * STATE_HIDDEN ： 默认无此状态（可通过app:behavior_hideable 启用此状态），启用后用户将能通过向下滑动完全隐藏 bottom sheet
+                     */
                     BottomSheetBehavior bottomSheetBehavior = BottomSheetBehavior.from(scrollView);
                     bottomSheetBehavior.setState(bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_COLLAPSED ? BottomSheetBehavior.STATE_EXPANDED : BottomSheetBehavior.STATE_COLLAPSED);
                 }

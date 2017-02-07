@@ -47,7 +47,7 @@ public class FloatingBehavior extends FloatingActionButton.Behavior {
     public void onNestedScroll(CoordinatorLayout coordinatorLayout, FloatingActionButton child, View target, int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed) {
         if (dyConsumed > 0 && !isAniming && child.getVisibility() == View.VISIBLE) {
             hide(child);
-        } else if (dyConsumed < 0 && !isAniming && child.getVisibility() == View.GONE) {
+        } else if (dyConsumed < 0 && !isAniming && child.getVisibility() == View.INVISIBLE) {
             show(child);
         }
     }
@@ -105,7 +105,7 @@ public class FloatingBehavior extends FloatingActionButton.Behavior {
 
             @Override
             public void onAnimationEnd(Animator animation) {
-                view.setVisibility(View.GONE);
+                view.setVisibility(View.INVISIBLE);
                 isAniming = false;
             }
 
