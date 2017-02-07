@@ -5,12 +5,13 @@ import android.view.View;
 
 import lxf.androiddemos.ui.BehaviorActivity;
 import lxf.androiddemos.ui.DatabindingActivity;
+import lxf.androiddemos.ui.FlowActivity;
 import lxf.androiddemos.ui.ViewDragHelperActivity;
 import lxf.androiddemos.ui.ZxingActivity;
 import lxf.androiddemos.ui.IOCActivity;
 
 public class MainRecyclerItem {
-    public static final String[] items = new String[]{"ViewDragHelper", "自定义Behavior", "二维码", "DataBinding","IOC"};
+    public static final String[] items = new String[]{"ViewDragHelper", "FlowLayout", "自定义Behavior", "二维码", "DataBinding", "IOC"};
 
     private String content;
 
@@ -19,6 +20,9 @@ public class MainRecyclerItem {
         switch (getContent()) {
             case "ViewDragHelper":
                 intent = new Intent(view.getContext(), ViewDragHelperActivity.class);
+                break;
+            case "FlowLayout":
+                intent = new Intent(view.getContext(), FlowActivity.class);
                 break;
             case "自定义Behavior":
                 intent = new Intent(view.getContext(), BehaviorActivity.class);

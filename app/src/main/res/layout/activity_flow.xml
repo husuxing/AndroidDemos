@@ -1,0 +1,65 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#E1E6F6"
+    android:orientation="vertical" >
+
+    <lxf.widget.FlowLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            style="@style/text_tag"
+            android:text="我有一只" />
+
+        <TextView
+            style="@style/text_tag"
+            android:text="小毛驴" />
+
+        <TextView
+            style="@style/text_tag"
+            android:text="我从来" />
+
+        <TextView
+            style="@style/text_tag"
+            android:text="都不骑" />
+
+        <TextView
+            style="@style/text_tag"
+            android:text="有一天" />
+
+        <TextView
+            style="@style/text_tag"
+            android:text="我心血来潮" />
+
+        <TextView
+            style="@style/text_tag"
+            android:text="骑着他去赶集" />
+
+        <TextView
+            style="@style/text_tag"
+            android:text="我手里拿着" />
+
+        <TextView
+            style="@style/text_tag"
+            android:text="小皮鞭" />
+
+        <TextView
+            style="@style/text_tag"
+            android:text="我心里正得意" />
+
+        <TextView
+            style="@style/text_tag"
+            android:text="哗啦啦啦" />
+
+        <TextView
+            style="@style/text_tag"
+            android:text="一不小心" />
+
+        <TextView
+            style="@style/text_tag"
+            android:text="我摔了一身泥" />
+    </lxf.widget.FlowLayout>
+
+</LinearLayout>
