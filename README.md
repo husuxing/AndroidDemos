@@ -1,3 +1,5 @@
+[TOC]
+
 # AndroidDemos
 &#8195;&#8195;记录并分享一下自己的Android学习历程
 
