@@ -8,3 +8,5 @@
 二维码的生成和扫描
 ## 2016年12月29日
 DataBinding的使用[http://www.jianshu.com/p/05b9838a1949](http://www.jianshu.com/p/05b9838a1949)
+## 2017年1月22日
+应公司需要，运用递归算法扒了网上1w多道围棋题目，算是Json解析加算法练手吧
