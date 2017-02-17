@@ -5,7 +5,7 @@
     android:background="#E1E6F6"
     android:orientation="vertical" >
 
-    <lxf.widget.FlowLayout
+    <lxf.widget.flowlayout.FlowLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
@@ -60,6 +60,6 @@
         <TextView
             style="@style/text_tag"
             android:text="我摔了一身泥" />
-    </lxf.widget.FlowLayout>
+    </lxf.widget.flowlayout.FlowLayout>
 
 </LinearLayout>
