@@ -9,9 +9,10 @@ import lxf.androiddemos.ui.FlowActivity;
 import lxf.androiddemos.ui.ViewDragHelperActivity;
 import lxf.androiddemos.ui.ZxingActivity;
 import lxf.androiddemos.ui.IOCActivity;
+import lxf.androiddemos.ui.ViewActivity;
 
 public class MainRecyclerItem {
-    public static final String[] items = new String[]{"ViewDragHelper", "FlowLayout", "自定义Behavior", "二维码", "DataBinding", "IOC"};
+    public static final String[] items = new String[]{"ViewDragHelper", "FlowLayout", "自定义Behavior", "二维码", "DataBinding", "IOC","View"};
 
     private String content;
 
@@ -35,6 +36,9 @@ public class MainRecyclerItem {
                 break;
             case "IOC":
                 intent = new Intent(view.getContext(), IOCActivity.class);
+                break;
+            case "View":
+                intent = new Intent(view.getContext(), ViewActivity.class);
                 break;
         }
         if (intent != null)
