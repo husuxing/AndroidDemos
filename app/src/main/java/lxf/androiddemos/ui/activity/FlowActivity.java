@@ -1,4 +1,4 @@
-package lxf.androiddemos.ui;
+package lxf.androiddemos.ui.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

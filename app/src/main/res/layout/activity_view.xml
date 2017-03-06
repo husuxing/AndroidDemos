@@ -14,7 +14,7 @@
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
-        tools:context="lxf.androiddemos.ui.ViewActivity">
+        tools:context="lxf.androiddemos.ui.activity.ViewActivity">
 
         <lxf.widget.TestView
             android:layout_width="match_parent"

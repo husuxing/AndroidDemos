@@ -1,12 +1,17 @@
-package lxf.androiddemos.ui;
+package lxf.androiddemos.ui.activity;
 
+import android.Manifest;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.widget.helper.ItemTouchHelper;
 
+import com.tbruyelle.rxpermissions2.RxPermissions;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 import lxf.androiddemos.BR;
 import lxf.androiddemos.R;
 import lxf.androiddemos.base.BaseActivity;
@@ -42,6 +47,18 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void onActivityCreate() {
+        Disposable disposable = new RxPermissions(this)
+                .request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                .subscribe(new Consumer<Boolean>() {
+                    @Override
+                    public void accept(Boolean aBoolean) throws Exception {
+                        if (!aBoolean)
+                            finish();
+                    }
+                });
+        addDisposable(disposable);
+
+
         BaseRecyclerBindingAdapter bindingAdapter = new BaseRecyclerBindingAdapter(datas) {
             @Override
             public int getItemLayoutId(int viewType) {

@@ -3,16 +3,10 @@ package lxf.androiddemos.model;
 import android.content.Intent;
 import android.view.View;
 
-import lxf.androiddemos.ui.BehaviorActivity;
-import lxf.androiddemos.ui.DatabindingActivity;
-import lxf.androiddemos.ui.FlowActivity;
-import lxf.androiddemos.ui.ViewDragHelperActivity;
-import lxf.androiddemos.ui.ZxingActivity;
-import lxf.androiddemos.ui.IOCActivity;
-import lxf.androiddemos.ui.ViewActivity;
+import lxf.androiddemos.ui.activity.*;
 
 public class MainRecyclerItem {
-    public static final String[] items = new String[]{"ViewDragHelper", "FlowLayout", "自定义Behavior", "二维码", "DataBinding", "IOC","View"};
+    public static final String[] items = new String[]{"app版本自动更新","DataBinding", "自定义Behavior", "二维码", "ViewDragHelper", "FlowLayout", "IOC", "View"};
 
     private String content;
 
@@ -39,6 +33,9 @@ public class MainRecyclerItem {
                 break;
             case "View":
                 intent = new Intent(view.getContext(), ViewActivity.class);
+                break;
+            case "app版本自动更新":
+                intent = new Intent(view.getContext(), UpdateActivity.class);
                 break;
         }
         if (intent != null)

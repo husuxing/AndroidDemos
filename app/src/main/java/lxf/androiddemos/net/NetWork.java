@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -17,7 +18,10 @@ import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 import lxf.androiddemos.model.RequestModel;
 import lxf.androiddemos.model.ResponseModel;
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Response;
+import okhttp3.ResponseBody;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -34,6 +38,16 @@ public class NetWork {
 
             OkHttpClient client = new OkHttpClient.Builder()
                     .connectTimeout(NetConfig.CONNECT_TIME_OUT, TimeUnit.MILLISECONDS)
+                    .addNetworkInterceptor(new Interceptor() {
+                        @Override
+                        public Response intercept(Chain chain) throws IOException {
+                            Response originalResponse = chain.proceed(chain.request());
+                            return originalResponse
+                                    .newBuilder()
+                                    .body(new FileResponseBody(originalResponse))//将自定义的ResposeBody设置给它
+                                    .build();
+                        }
+                    })
                     .build();
 
             Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
@@ -42,7 +56,6 @@ public class NetWork {
                     .client(client)
                     .baseUrl(NetConfig.BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create(gson))
-//                    .addCallAdapterFactory(RxJavaCallAdapterFactory.create()) //squareup公司的retrofit2暂不支持rxjava2
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .build();
             api = retrofit.create(Api.class);
@@ -175,5 +188,9 @@ public class NetWork {
 
         return observable
                 .compose(handleList(cls));
+    }
+
+    public Observable<ResponseBody> down(String url) {
+        return api.down(url);
     }
 }

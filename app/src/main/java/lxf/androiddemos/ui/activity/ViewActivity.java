@@ -1,11 +1,10 @@
-package lxf.androiddemos.ui;
+package lxf.androiddemos.ui.activity;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 
-import lxf.androiddemos.base.BaseActivity;
-
 import lxf.androiddemos.R;
+import lxf.androiddemos.base.BaseActivity;
 
 /**
  * View学习

@@ -14,3 +14,5 @@ RecyclerView的适配器、分割线、头部视图封装，ItemTouchHelper基�
 DataBinding的使用[http://www.jianshu.com/p/05b9838a1949](http://www.jianshu.com/p/05b9838a1949)
 ## 2017年1月22日
 应公司需要，运用递归算法扒了网上1w多道围棋题目，算是Json解析加算法练手吧
+## 2017年3月6日
+Rxjava2+Retrofit2+IntentService实现app自动更新

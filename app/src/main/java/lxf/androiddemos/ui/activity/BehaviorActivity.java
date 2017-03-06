@@ -1,4 +1,4 @@
-package lxf.androiddemos.ui;
+package lxf.androiddemos.ui.activity;
 
 import android.os.Bundle;
 import android.support.design.widget.BottomSheetBehavior;

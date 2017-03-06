@@ -1,4 +1,4 @@
-package lxf.androiddemos.ui;
+package lxf.androiddemos.ui.activity;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
