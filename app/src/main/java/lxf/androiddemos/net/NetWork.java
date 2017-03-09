@@ -38,16 +38,6 @@ public class NetWork {
 
             OkHttpClient client = new OkHttpClient.Builder()
                     .connectTimeout(NetConfig.CONNECT_TIME_OUT, TimeUnit.MILLISECONDS)
-                    .addNetworkInterceptor(new Interceptor() {
-                        @Override
-                        public Response intercept(Chain chain) throws IOException {
-                            Response originalResponse = chain.proceed(chain.request());
-                            return originalResponse
-                                    .newBuilder()
-                                    .body(new FileResponseBody(originalResponse))//将自定义的ResposeBody设置给它
-                                    .build();
-                        }
-                    })
                     .build();
 
             Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
@@ -191,6 +181,29 @@ public class NetWork {
     }
 
     public Observable<ResponseBody> down(String url) {
+        OkHttpClient client = new OkHttpClient.Builder()
+                .connectTimeout(NetConfig.CONNECT_TIME_OUT, TimeUnit.MILLISECONDS)
+                .addNetworkInterceptor(new Interceptor() {
+                    @Override
+                    public Response intercept(Chain chain) throws IOException {
+                        Response originalResponse = chain.proceed(chain.request());
+                        return originalResponse
+                                .newBuilder()
+                                .body(new FileResponseBody(originalResponse))//将自定义的ResposeBody设置给它
+                                .build();
+                    }
+                })
+                .build();
+
+        Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .client(client)
+                .baseUrl(NetConfig.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .build();
+        Api api = retrofit.create(Api.class);
         return api.down(url);
     }
 }

@@ -5,9 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 
 import io.reactivex.Observer;
 import io.reactivex.disposables.CompositeDisposable;
@@ -15,6 +13,9 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.ResponseBody;
+import okio.BufferedSink;
+import okio.BufferedSource;
+import okio.Okio;
 
 /**
  * app更新管理类
@@ -28,27 +29,28 @@ public class UpdateManager {
      * @param context     上下文
      * @param url         新版本地址
      * @param apkPath     本地apk保存路径
+     * @param cd          订阅关系集合，在数据传输完毕时解除订阅
      */
     public static void downloadApk(final Context context, final String url, final String apkPath, final CompositeDisposable cd) {
         NetWork.getInstance().down(url)
-                .map(new Function<ResponseBody, InputStream>() {
+                .map(new Function<ResponseBody, BufferedSource>() {
                     @Override
-                    public InputStream apply(ResponseBody responseBody) throws Exception {
-                        return responseBody.byteStream();
+                    public BufferedSource apply(ResponseBody responseBody) throws Exception {
+                        return responseBody.source();
                     }
                 })
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.io())
-                .subscribe(new Observer<InputStream>() {
+                .subscribe(new Observer<BufferedSource>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                         cd.add(d);
                     }
 
                     @Override
-                    public void onNext(InputStream inputStream) {
+                    public void onNext(BufferedSource bufferedSource) {
                         try {
-                            writeFile(inputStream, new File(apkPath));
+                            writeFile(bufferedSource, new File(apkPath));
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -76,22 +78,18 @@ public class UpdateManager {
     /**
      * 写入文件
      */
-    private static void writeFile(InputStream in, File file) throws IOException {
+    private static void writeFile(BufferedSource source, File file) throws IOException {
         if (!file.getParentFile().exists())
             file.getParentFile().mkdirs();
 
         if (file.exists())
             file.delete();
 
-        FileOutputStream out = new FileOutputStream(file);
-        byte[] buffer = new byte[1024 * 128];
-        int len;
-        while ((len = in.read(buffer)) != -1) {
-            out.write(buffer, 0, len);
-        }
-        out.flush();
-        out.close();
-        in.close();
+        BufferedSink bufferedSink = Okio.buffer(Okio.sink(file));
+        bufferedSink.writeAll(source);
+
+        bufferedSink.close();
+        source.close();
     }
 
     /**

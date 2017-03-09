@@ -15,4 +15,10 @@
         android:layout_height="wrap_content"
         android:text="开始下载"
         android:onClick="startDownload"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:text="这里下载的是公司服务器上的一个apk文件，不保证很长时间后依然可以下载，但代码应该是没问题的，有兴趣的可以下载源码来看，改下url地址就好"/>
 </RelativeLayout>
