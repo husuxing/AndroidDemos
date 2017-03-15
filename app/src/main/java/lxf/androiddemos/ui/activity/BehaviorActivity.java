@@ -42,7 +42,10 @@ public class BehaviorActivity extends BaseActivity {
         for (int i = 0; i < 100; i++) {
             datas.add(i + 1);
         }
+    }
 
+    @Override
+    protected void onActivityCreate() {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -69,11 +72,6 @@ public class BehaviorActivity extends BaseActivity {
         }
 
         initRecyclerView();
-    }
-
-    @Override
-    protected void onActivityCreate() {
-
     }
 
     private void initRecyclerView() {

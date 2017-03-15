@@ -31,7 +31,9 @@
 
         <service android:name=".ui.service.MyIntentService" />
 
-        <activity android:name=".ui.activity.UpdateActivity"></activity>
+        <activity android:name=".ui.activity.UpdateActivity" />
+        <activity android:name=".ui.activity.LottieActivity" />
+        <activity android:name=".ui.activity.BannerActivity" android:screenOrientation="landscape" android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
     </application>
 
 </manifest>

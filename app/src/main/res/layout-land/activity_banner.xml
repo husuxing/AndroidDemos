@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_orange"
+    android:gravity="center"
+    android:clipChildren="false"
+    tools:context="lxf.androiddemos.ui.activity.BannerActivity">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="350dp"
+        android:layout_height="match_parent"
+        android:clipChildren="false"
+        />
+</RelativeLayout>
