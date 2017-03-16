@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="transitionTheme" parent="AppTheme">
+        <!--开启窗口内容动画，仅支持5.0以上-->
+        <item name="android:windowContentTransitions">true</item>
+    </style>
+</resources>

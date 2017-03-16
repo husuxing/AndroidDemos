@@ -33,7 +33,12 @@
 
         <activity android:name=".ui.activity.UpdateActivity" />
         <activity android:name=".ui.activity.LottieActivity" />
-        <activity android:name=".ui.activity.BannerActivity" android:screenOrientation="landscape" android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity
+            android:name=".ui.activity.BannerActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".ui.activity.TransitionActivity" android:theme="@style/transitionTheme"/>
+        <activity android:name=".ui.activity.TransitionTargetActivity" android:theme="@style/transitionTheme"/>
     </application>
 
 </manifest>

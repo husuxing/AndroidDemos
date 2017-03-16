@@ -8,6 +8,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!--<style name="transitionTheme" parent="AppTheme">-->
+        <!--<item name="android:windowContentTransitions">true</item>-->
+    <!--</style>-->
+
     <style name="text_base">
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/text_green_bg</item>
