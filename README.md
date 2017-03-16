@@ -16,3 +16,5 @@ DataBinding的使用[http://www.jianshu.com/p/05b9838a1949](http://www.jianshu.c
 应公司需要，运用递归算法扒了网上1w多道围棋题目，算是Json解析加算法练手吧
 ## 2017年3月6日
 Rxjava2+Retrofit2+IntentService实现app自动更新[http://www.jianshu.com/p/537887f8fc46](http://www.jianshu.com/p/537887f8fc46)
+## 2017年3月16日
+Activity转场动画、揭露动画。
