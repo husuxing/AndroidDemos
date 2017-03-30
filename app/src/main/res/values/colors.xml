@@ -28,4 +28,7 @@
 
     <color name="text_color">#FF8A00</color>
 
+
+    <color name="btn_normal">#F4B907</color>
+    <color name="btn_focused">#F46B0E</color>
 </resources>

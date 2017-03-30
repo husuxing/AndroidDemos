@@ -18,3 +18,5 @@ DataBinding的使用[http://www.jianshu.com/p/05b9838a1949](http://www.jianshu.c
 Rxjava2+Retrofit2+IntentService实现app自动更新[http://www.jianshu.com/p/537887f8fc46](http://www.jianshu.com/p/537887f8fc46)
 ## 2017年3月16日
 Activity转场动画、揭露动画。
+## 2017年3月30日
+Activity登陆动画。

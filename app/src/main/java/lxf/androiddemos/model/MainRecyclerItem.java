@@ -6,13 +6,16 @@ import android.view.View;
 import lxf.androiddemos.ui.activity.*;
 
 public class MainRecyclerItem {
-    public static final String[] items = new String[]{"activity转场动画","3d画廊", "Lottie动画开源库", "app版本自动更新", "DataBinding", "自定义Behavior", "二维码", "ViewDragHelper", "FlowLayout", "IOC", "View"};
+    public static final String[] items = new String[]{"登陆动画", "activity转场动画", "3d画廊", "Lottie动画开源库", "app版本自动更新", "DataBinding", "自定义Behavior", "二维码", "ViewDragHelper", "FlowLayout", "IOC", "View"};
 
     private String content;
 
     public void onItemClick(View view) {
         Intent intent = null;
         switch (getContent()) {
+            case "登陆动画":
+                intent = new Intent(view.getContext(), LoginActivity.class);
+                break;
             case "activity转场动画":
                 intent = new Intent(view.getContext(), TransitionActivity.class);
                 break;

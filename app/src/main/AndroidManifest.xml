@@ -13,7 +13,9 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.activity.MainActivity">
+        <activity
+            android:name=".ui.activity.MainActivity"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -37,8 +39,14 @@
             android:name=".ui.activity.BannerActivity"
             android:screenOrientation="landscape"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".ui.activity.TransitionActivity" android:theme="@style/transitionTheme"/>
-        <activity android:name=".ui.activity.TransitionTargetActivity" android:theme="@style/transitionTheme"/>
+        <activity
+            android:name=".ui.activity.TransitionActivity"
+            android:theme="@style/transitionTheme" />
+        <activity
+            android:name=".ui.activity.TransitionTargetActivity"
+            android:theme="@style/transitionTheme" />
+        <activity android:name=".ui.activity.LoginActivity" />
+        <activity android:name=".ui.activity.LoginTargetActivity"></activity>
     </application>
 
 </manifest>
