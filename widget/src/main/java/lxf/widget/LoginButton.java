@@ -21,7 +21,7 @@ import android.view.animation.RotateAnimation;
  * Created by lxf on 2017/3/20.
  */
 public class LoginButton extends View {
-    private final int duration = 300;
+    private final int duration = 300;//按钮缩短动画的持续时间
     private Paint paintBg;
     private Paint paintText;
     private Paint paintCircle;
@@ -64,6 +64,7 @@ public class LoginButton extends View {
     }
 
     private void init() {
+        //设置按钮可点击，可获得焦点
         setClickable(true);
         setFocusable(true);
 
@@ -237,6 +238,7 @@ public class LoginButton extends View {
         animator.start();
     }
 
+    //开始按钮的旋转动画，表示加载中
     private void startCircleAnim() {
         RotateAnimation ra = new RotateAnimation(0, 360, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         ra.setDuration(duration * 2);
@@ -247,6 +249,7 @@ public class LoginButton extends View {
     }
 
     public interface Loading {
+        //添加我们自己的逻辑
         void startLoading();
     }
 }

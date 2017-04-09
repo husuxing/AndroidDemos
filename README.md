@@ -19,4 +19,4 @@ Rxjava2+Retrofit2+IntentService实现app自动更新[http://www.jianshu.com/p/53
 ## 2017年3月16日
 Activity转场动画、揭露动画。
 ## 2017年3月30日
-Activity登陆动画。
+Activity登陆动画。[http://www.jianshu.com/p/d339a112c170](http://www.jianshu.com/p/d339a112c170)
