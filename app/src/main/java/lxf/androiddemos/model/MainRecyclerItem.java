@@ -47,7 +47,7 @@ public class MainRecyclerItem {
                 intent = new Intent(view.getContext(), LottieActivity.class);
                 break;
             case "3d画廊":
-                intent = new Intent(view.getContext(), BannerActivity.class);
+//                intent = new Intent(view.getContext(), BannerActivity.class);
                 break;
         }
         if (intent != null)
